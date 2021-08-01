@@ -43,8 +43,9 @@
             <div
               class="restaurant col-xs-12 col-sm-6 col-lg-4 col-xl-3"
               *ngFor="let cheese of products"
+              (click)="openDialog(cheese)"
             >
-              <img src="{{ cheese.image }}" alt="" />
+              <img src="{{ cheese.image }}"  alt=""  />
               <h3>{{ cheese.title }}</h3>
               <p>
                 <strong>${{ cheese.price }}</strong>
@@ -52,7 +53,7 @@
               <button
                 class="btn"
                 [attr.data-cy]="'add-to-cart-' + cheese.id"
-                (click)="addToCart(cheese.id)"
+                (click)="addToCart(cheese.id, $event)"
               >
                 Add to cart
               </button>
