@@ -56,4 +56,14 @@ export class NavbarComponent implements OnInit {
       0
     );
   }
+  // calculates the total cart cost
+  purchase() {
+    let param = {
+      totalAmount: this.calculateTotal(),
+      cheeseList: Object.keys(this.cartData).map((key) => ({id:key,quantity:this.cartData[key]}))
+    };
+    this.cartService.purchase(param).subscribe((data) => {
+      this.cartService.clearCart();
+    });
+  }
 }

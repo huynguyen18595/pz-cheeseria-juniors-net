@@ -3,6 +3,8 @@ import { ProductsService } from './cheeses.service';
 import { CartModelPublic } from '../_models/cart';
 import { Cheese } from '../_models/cheese';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +18,9 @@ export class CartService {
   cartDataObs$ = new BehaviorSubject<CartModelPublic>(this.cartDataClient);
   productData$ = new BehaviorSubject<Cheese[]>([]);
 
-  constructor(private productsService: ProductsService) {
+  param = new Object();
+
+  constructor(private productsService: ProductsService, private http: HttpClient) {
     //fetch cheeses
     this.productsService.getCheeses().subscribe((prods) => {
       this.productData$.next(prods);
@@ -53,6 +57,18 @@ export class CartService {
     }
 
     delete this.cartDataClient[id];
+    this.cartDataObs$.next(this.cartDataClient);
+  }
+
+  private server_url = environment.serverURL;
+
+
+  purchase(_param: object) {   
+    this.param = _param;
+    return this.http.post(this.server_url + '/cart',this.param);
+  }
+  clearCart(){
+    this.cartDataClient = {};
     this.cartDataObs$.next(this.cartDataClient);
   }
 }
