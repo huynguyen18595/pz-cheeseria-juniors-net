@@ -22,8 +22,8 @@ namespace Pz.Cheeseria.Api.Controllers
 
             string json = JsonSerializer.Serialize(cart);
             string path =  @".\Data\PurchaseHistory.json";
-           
-            System.IO.File.WriteAllText(path, json);
+            System.IO.File.AppendAllText(path, "\n");
+            System.IO.File.AppendAllText(path, json);
 
         }
     }
