@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../_services/cart.service';
 import { CartModelPublic } from '../_models/cart';
 import { Cheese } from '../_models/cheese';
+import { PurchaseHistoryInfoComponent } from '../purchase-history-info/purchase-history-info.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-navbar',
@@ -17,8 +19,9 @@ export class NavbarComponent implements OnInit {
 
   store: any = [];
   logo: any;
+  purchaseHistory: any = [];
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService,public dialog: MatDialog) {}
 
   ngOnInit() {
     // set the products locally
@@ -34,7 +37,20 @@ export class NavbarComponent implements OnInit {
       );
     });
   }
+  openDialog() {
+    this.cartService.getPurchaseHistory().subscribe((pros) =>{
+      this.purchaseHistory = pros;
+        
+      const dialogRef = this.dialog.open(PurchaseHistoryInfoComponent, {
+        data: this.purchaseHistory,
+        width: "600px",
+      });
 
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
+    });
+  }
   // Increments the number of items in cart if value is positive,
   // or decrements if negative
   changeItemAmount(id: string, value: number) {
@@ -66,4 +82,5 @@ export class NavbarComponent implements OnInit {
       this.cartService.clearCart();
     });
   }
+  
 }

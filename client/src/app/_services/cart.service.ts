@@ -6,6 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -19,6 +20,7 @@ export class CartService {
   productData$ = new BehaviorSubject<Cheese[]>([]);
 
   param = new Object();
+  static getPurchaseHistory: any;
 
   constructor(private productsService: ProductsService, private http: HttpClient) {
     //fetch cheeses
@@ -70,5 +72,8 @@ export class CartService {
   clearCart(){
     this.cartDataClient = {};
     this.cartDataObs$.next(this.cartDataClient);
+  }
+  getPurchaseHistory()  {
+    return this.http.get(this.server_url + '/cart');
   }
 }

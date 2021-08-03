@@ -14,6 +14,7 @@ export class CheesesTabComponent implements OnInit {
   cheeses: [] = [];
   products: [] = [];
 
+
   contentLoadedSups: boolean = false;
   contentLoadedProds: boolean = false;
   _currency = 'CDF';
@@ -51,6 +52,7 @@ export class CheesesTabComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
     });
   }
+  
 }
 
 

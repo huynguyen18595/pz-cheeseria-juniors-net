@@ -10,5 +10,7 @@ import { Cheese } from '../_models/cheese';
     templateUrl: './cheese-card-info.component.html',
   })
   export class CheeseCardInfo {
-    constructor(@Inject(MAT_DIALOG_DATA) public data: Cheese) {}
+    constructor(@Inject(MAT_DIALOG_DATA) public data: Cheese) {
+      
+    }
   };
