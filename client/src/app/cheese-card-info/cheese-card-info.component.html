@@ -1,8 +1,8 @@
-<div style="width:450px;">
+<div data-cy="cheese-card-dialog" style="width:450px;">
     <img style="width: 300px;" src="{{ data.image }}"  alt=""  />
     <h3>{{ data.title }}</h3>
       <p>
-        <strong>${{ data.price }}</strong>
+        <strong>{{ data.price | currency: "USD" }}</strong>
     </p>
-    <p>{{data.description}}</p>
+    <p data-cy="description">{{data.description}}</p>
 </div>           

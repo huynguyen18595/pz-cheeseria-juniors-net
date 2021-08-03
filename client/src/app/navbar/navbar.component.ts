@@ -44,6 +44,7 @@ export class NavbarComponent implements OnInit {
       const dialogRef = this.dialog.open(PurchaseHistoryInfoComponent, {
         data: this.purchaseHistory,
         width: "600px",
+        height: "400px",
       });
 
       dialogRef.afterClosed().subscribe(result => {

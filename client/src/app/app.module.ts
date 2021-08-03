@@ -19,9 +19,10 @@ import { environment } from '../environments/environment';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CheesesTabComponent } from './cheeses-tab/cheeses-tab.component';
 import { PurchaseHistoryInfoComponent } from './purchase-history-info/purchase-history-info.component';
+import { CheeseCardInfo } from './cheese-card-info/cheese-card-info.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, CheesesTabComponent, PurchaseHistoryInfoComponent],
+  declarations: [AppComponent, NavbarComponent, CheesesTabComponent, PurchaseHistoryInfoComponent, CheeseCardInfo],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

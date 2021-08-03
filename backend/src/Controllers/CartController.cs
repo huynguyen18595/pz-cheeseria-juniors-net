@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Pz.Cheeseria.Api.Models;
+using Pz.Cheeseria.Api.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,38 +16,28 @@ namespace Pz.Cheeseria.Api.Controllers
     [ApiController]
     public class CartController : ControllerBase
     {
+        private CartService cartService;
+        public CartController()
+        {
+            cartService = new CartService() ;
+        }
+
         // POST api/<CartController>
         [HttpPost]
-        [ProducesResponseType(typeof(Cart[]), 200)]
-        public void CreateCart(Cart cart)
+        [ProducesResponseType(200)]        
+        public IActionResult CreateCart(Cart cart)
         {
-            List<Cart> purchaseHistory = new List<Cart>();
-            string path = @".\Data\PurchaseHistory.json";
-            //1. get the list of purchases in JSON file
-            string json = System.IO.File.ReadAllText(path);
-            purchaseHistory = JsonConvert.DeserializeObject<List<Cart>>(json);
-            //2. Add recent orders to the list
-            if (purchaseHistory == null)
-            {
-                purchaseHistory = new List<Cart>();
-            }
-            purchaseHistory.Add(cart);
-            //3. Write the list back to JSON file
-            System.IO.File.WriteAllText(path, JsonConvert.SerializeObject(purchaseHistory));
-
+            cartService.CreateCart(cart);
+            return Ok();
         }
         //get API
         [HttpGet]
-        [ProducesResponseType(typeof(Cart[]),200)]
+        [ProducesResponseType(typeof(Cart[]), 200)]
         public IActionResult GetCard()
         {
-            string path = @".\Data\PurchaseHistory.json";
-            List<Cart> purchaseHistory = new List<Cart>();
-            //1. Read JSON file to get JSON objects
-            string json = System.IO.File.ReadAllText(path);
-            //2. Parse JSON object to Cart object
-            purchaseHistory = JsonConvert.DeserializeObject<List<Cart>>(json);
-            return Ok(purchaseHistory.ToArray());
+            Cart[] cart = cartService.GetCard();
+
+            return Ok(cart);
         }
     }
 }

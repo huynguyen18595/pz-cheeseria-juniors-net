@@ -1,11 +1,11 @@
-<h3>Recent Purchases</h3>
+<h3 data-cy='recent-purchase'>Recent Purchases</h3>
 <div *ngFor="let cart of data" class="d-flex cart-container">
   <div style="width:40%">
     Total Amount: {{cart.totalAmount | currency: "USD"}}<br>
     <b>Total Items: {{getTotalQuantity(cart.cheeseList)}}</b>
   </div>
   <div style="width:60%">
-    <div *ngFor="let item of cart.cheeseList">
+    <div *ngFor="let item of cart.cheeseList" [attr.data-cy]="'id' + item.id">
        {{ getDetails(item.id).title }} : <b>{{item.quantity}}</b>
     </div>
   </div>
