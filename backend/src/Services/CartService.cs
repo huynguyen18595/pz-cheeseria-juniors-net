@@ -25,7 +25,7 @@ namespace Pz.Cheeseria.Api.Services
 
         public Cart[] GetCard()
         {
-            string path = $"{System.IO.Directory.GetCurrentDirectory()}/Data/PurchaseHistory.json"; ;
+            string path = $"{System.IO.Directory.GetCurrentDirectory()}/Data/PurchaseHistory.json";
             List<Cart> purchaseHistory = new List<Cart>();
             //1. Read JSON file to get JSON objects
             string json = System.IO.File.ReadAllText(path);
