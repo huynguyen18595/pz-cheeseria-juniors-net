@@ -9,7 +9,7 @@ namespace Pz.Cheeseria.Api.Services
         public void CreateCart(Cart cart)
         {
             List<Cart> purchaseHistory = new List<Cart>();
-            string path = $"{System.IO.Directory.GetCurrentDirectory()}/Data/PurchaseHistory.json";
+            string path = $"{System.IO.Directory.GetCurrentDirectory()}\\Data\\PurchaseHistory.json";
             //1. get the list of purchases in JSON file
             string json = System.IO.File.ReadAllText(path);
             purchaseHistory = JsonConvert.DeserializeObject<List<Cart>>(json);
@@ -25,7 +25,7 @@ namespace Pz.Cheeseria.Api.Services
 
         public Cart[] GetCard()
         {
-            string path = $"{System.IO.Directory.GetCurrentDirectory()}/Data/PurchaseHistory.json";
+            string path = $"{System.IO.Directory.GetCurrentDirectory()}\\Data\\PurchaseHistory.json";
             List<Cart> purchaseHistory = new List<Cart>();
             //1. Read JSON file to get JSON objects
             string json = System.IO.File.ReadAllText(path);
