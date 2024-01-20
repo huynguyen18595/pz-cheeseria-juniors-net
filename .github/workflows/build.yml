@@ -50,7 +50,7 @@ jobs:
           cache: "npm"
           cache-dependency-path: client/package-lock.json
 
-      - run: rm package-lock.json
+      - run: rm .\client\package-lock.json
       - run: npm ci
       - run: npm run build --if-present
       - run: npm run test:ci
