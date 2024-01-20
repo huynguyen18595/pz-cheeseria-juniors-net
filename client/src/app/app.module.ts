@@ -18,9 +18,15 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CheesesTabComponent } from './cheeses-tab/cheeses-tab.component';
+import { CheeseDetailsDialogComponent } from './cheeses-tab/cheese-details-dialog/cheese-details-dialog.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, CheesesTabComponent],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    CheesesTabComponent,
+    CheeseDetailsDialogComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
