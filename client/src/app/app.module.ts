@@ -9,7 +9,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AppRoutingModule } from './app-routing.module';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { NgxPaginationModule } from 'ngx-pagination';
 
@@ -18,15 +18,9 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CheesesTabComponent } from './cheeses-tab/cheeses-tab.component';
-import { CheeseDetailsDialogComponent } from './cheeses-tab/cheese-details-dialog/cheese-details-dialog.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-    CheesesTabComponent,
-    CheeseDetailsDialogComponent,
-  ],
+  declarations: [AppComponent, NavbarComponent, CheesesTabComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
