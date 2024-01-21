@@ -14,7 +14,7 @@ namespace Pz.Cheeseria.Api.Services
             _orderHistoryRepository = orderHistoryRepository;
         }
 
-        public bool SaveOrderHistory(OrderHistory record)
+        public bool SaveOrderHistory(Order record)
         {
             return _orderHistoryRepository.SaveOrderHistory(record);
         }

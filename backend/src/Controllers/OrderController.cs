@@ -16,7 +16,7 @@ namespace Pz.Cheeseria.Api.Controllers
         }
 
         [HttpPost]
-        public bool PlaceOrder([FromBody] OrderHistory record)
+        public bool PlaceOrder([FromBody] Order record)
         {
              return _orderLogic.SaveOrderHistory(record);
         }

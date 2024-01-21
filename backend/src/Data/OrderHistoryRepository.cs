@@ -18,21 +18,21 @@ namespace Pz.Cheeseria.Api.Data
             return jsonFilePath;
         }
 
-        public bool SaveOrderHistory(OrderHistory record)
+        public bool SaveOrderHistory(Order record)
         {
             var jsonFilePath = getPath();
             
             if (File.Exists(jsonFilePath))
             {
                 string fileContent = File.ReadAllText(jsonFilePath);
-                OrderHistory[] currentOrderHistory = JsonSerializer.Deserialize<OrderHistory[]>(fileContent);
-                currentOrderHistory = currentOrderHistory.Concat(new OrderHistory[] { record }).ToArray();
+                Order[] currentOrderHistory = JsonSerializer.Deserialize<Order[]>(fileContent);
+                currentOrderHistory = currentOrderHistory.Concat(new Order[] { record }).ToArray();
                 File.WriteAllText(jsonFilePath, JsonSerializer.Serialize(currentOrderHistory));
                 return true;
             } 
             else
             {
-                File.WriteAllText(jsonFilePath, JsonSerializer.Serialize(new OrderHistory[] { record }));
+                File.WriteAllText(jsonFilePath, JsonSerializer.Serialize(new Order[] { record }));
                 return true;
             }
         }

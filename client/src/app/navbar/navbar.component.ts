@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../_services/cart.service';
 import { CartModelPublic } from '../_models/cart';
 import { Cheese } from '../_models/cheese';
+import { OrderService } from '../_services/order.service';
+import { OrderItem } from '../_models/orderItem';
+import { Order } from '../_models/order';
 
 @Component({
   selector: 'app-navbar',
@@ -18,7 +21,10 @@ export class NavbarComponent implements OnInit {
   store: any = [];
   logo: any;
 
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+    private orderService: OrderService
+  ) {}
 
   ngOnInit() {
     // set the products locally
@@ -55,5 +61,27 @@ export class NavbarComponent implements OnInit {
       (total, [key, value]) => total + this.getDetails(key).price * value,
       0
     );
+  }
+
+  sendOrder(cartData: CartModelPublic) {
+    const orderItems: OrderItem[] = Object.entries(cartData).map(
+      ([key, value]) =>
+        ({
+          cheese: this.getDetails(key),
+          quantity: value,
+        } as OrderItem)
+    );
+
+    this.orderService
+      .sendOrder({
+        OrderItems: orderItems,
+        Total: this.calculateTotal(),
+        CreatedDate: new Date(),
+      } as Order)
+      .subscribe(() => {
+        this.cartData = null;
+        this.cartSize = 0;
+        this.cartTotal = 0;
+      });
   }
 }
