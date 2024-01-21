@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Pz.Cheeseria.Api.Data;
+using Pz.Cheeseria.Api.Interfaces;
+using Pz.Cheeseria.Api.Services;
 
 namespace Pz.Cheeseria.Api
 {
@@ -20,6 +23,8 @@ namespace Pz.Cheeseria.Api
         {
             services.AddControllers();
             services.AddSwaggerGen();
+            services.AddScoped<IOrderLogic, OrderLogic>();
+            services.AddScoped<OrderHistoryRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
