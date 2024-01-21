@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Pz.Cheeseria.Api.Interfaces;
 using Pz.Cheeseria.Api.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Pz.Cheeseria.Api.Controllers
@@ -19,6 +20,12 @@ namespace Pz.Cheeseria.Api.Controllers
         public bool PlaceOrder([FromBody] Order record)
         {
              return _orderLogic.SaveOrderHistory(record);
+        }
+
+        [HttpGet]
+        public List<Order> GetOrderHistory()
+        {
+            return _orderLogic.GetOrderHistory();
         }
     }
 }

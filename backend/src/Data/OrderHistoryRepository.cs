@@ -1,5 +1,6 @@
 ﻿using Pz.Cheeseria.Api.Models;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
@@ -34,6 +35,21 @@ namespace Pz.Cheeseria.Api.Data
             {
                 File.WriteAllText(jsonFilePath, JsonSerializer.Serialize(new Order[] { record }));
                 return true;
+            }
+        }
+
+        public List<Order> getOrderHistory() 
+        {
+            var jsonFilePath = getPath();
+            if(File.Exists(jsonFilePath))
+            {
+                string fileContent = File.ReadAllText(jsonFilePath);
+                Order[] currentOrderHistory = JsonSerializer.Deserialize<Order[]>(fileContent);
+                return currentOrderHistory.ToList();
+            }
+            else
+            {
+                return new List<Order>();
             }
         }
     }

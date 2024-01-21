@@ -1,0 +1,22 @@
+<div>
+  <h1>Order History</h1>
+  <div class="flex flex-column">
+    <div class="flex flex-row">
+      <div *ngFor="let order of data; index as i" class="flex flex-column">
+        <h3>Order #{{ i }}</h3>
+        <p>Created Date: {{ order.createdDate | date : "d/M/yy, h:mm a " }}</p>
+        <p>Items:</p>
+        <ul *ngFor="let item of order.orderItems">
+          <li>
+            <p>
+              Name: {{ item.cheese.title }} - Price: {{ item.cheese.price }} -
+              Quantity: {{ item.quantity }}
+            </p>
+          </li>
+        </ul>
+        <p>Total: {{ order.total | currency : "USD" }}</p>
+        <hr />
+      </div>
+    </div>
+  </div>
+</div>

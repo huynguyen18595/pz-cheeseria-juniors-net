@@ -19,6 +19,7 @@ import { environment } from '../environments/environment';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CheesesTabComponent } from './cheeses-tab/cheeses-tab.component';
 import { CheeseDetailsDialogComponent } from './cheeses-tab/cheese-details-dialog/cheese-details-dialog.component';
+import { OrderHistoryDialogComponent } from './navbar/order-history-dialog/order-history-dialog.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { CheeseDetailsDialogComponent } from './cheeses-tab/cheese-details-dialo
     NavbarComponent,
     CheesesTabComponent,
     CheeseDetailsDialogComponent,
+    OrderHistoryDialogComponent,
   ],
   imports: [
     BrowserModule,

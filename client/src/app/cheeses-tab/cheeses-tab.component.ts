@@ -35,7 +35,6 @@ export class CheesesTabComponent implements OnInit {
   }
 
   showCheeseDetails(product: Cheese) {
-    console.log(product);
     this.dialog.open(CheeseDetailsDialogComponent, {
       data: product,
       width: '450px',

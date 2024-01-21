@@ -5,6 +5,8 @@ import { Cheese } from '../_models/cheese';
 import { OrderService } from '../_services/order.service';
 import { OrderItem } from '../_models/orderItem';
 import { Order } from '../_models/order';
+import { MatDialog } from '@angular/material/dialog';
+import { OrderHistoryDialogComponent } from './order-history-dialog/order-history-dialog.component';
 
 @Component({
   selector: 'app-navbar',
@@ -23,7 +25,8 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -74,14 +77,25 @@ export class NavbarComponent implements OnInit {
 
     this.orderService
       .sendOrder({
-        OrderItems: orderItems,
-        Total: this.calculateTotal(),
-        CreatedDate: new Date(),
+        orderItems,
+        total: this.calculateTotal(),
+        createdDate: new Date(),
       } as Order)
       .subscribe(() => {
         this.cartData = null;
         this.cartSize = 0;
         this.cartTotal = 0;
       });
+  }
+
+  showOrderHistory() {
+    this.orderService.getOrders().subscribe((orders) => {
+      this.dialog.open(OrderHistoryDialogComponent, {
+        data: orders,
+        width: '750px',
+        height: '750px',
+      });
+      console.log(orders);
+    });
   }
 }
